@@ -94,7 +94,7 @@ fi
 # ==========================================
 echo "[$NOW] [INFO] 30일 경과 아카이브 삭제 프로세스 진입"
 
-TARGET_DELETES=$(find "$ARCHIVE_DIR" -name "*.gz" -type f -mtime +30 2>/dev/null || true)
+TARGET_DELETES=$(find "$ARCHIVE_DIR" -maxdepth 1 -name "*.gz" -type f -mtime +30 2>/dev/null || true)
 
 # 2-5. 삭제 대상 파일 0개 예외 처리
 if [ -z "$TARGET_DELETES" ]; then
