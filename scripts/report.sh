@@ -60,7 +60,7 @@ echo "============================================="
 # 2. awk를 이용해 시간 비교 및 누적 통계 연산(평균, 최대, 최소, 샘플수)을 한방에 처리합니다.
 # 3. 데이터 유실 및 문자열 꼬임 방지를 위해 sed로 % 기호를 전처리해 떼어냅니다.
 
-cat "$LOG_FILE" | grep -v "\[DEBUG\]" | grep -v "\[INFO\]" | grep -v "\[START\]" | grep -v "\[END\]" | grep -v "===" | sed 's/%//g' | awk -v start="$START_TIME" -v end="$END_TIME" '
+cat "$LOG_FILE" | grep -v "\[DEBUG\]" | grep -v "\[INFO\]" | grep -v "\[ERROR\]" | grep -v "\[START\]" | grep -v "\[END\]" | grep -v "===" | sed 's/%//g' | awk -v start="$START_TIME" -v end="$END_TIME" '
 BEGIN {
     # 최대/최소 비교기 초기화
     cpu_min = 999.9; cpu_max = -1.0;
@@ -118,8 +118,8 @@ END {
 
     print "💾 3. DISK 사용률 통계"
     printf "   - 평균(AVG): %.2f %%\n", disk_sum / count
-    printf "   - 최대(MAX): %d %%\n", cpu_max  # 디스크는 보통 정수 포맷 매칭
-    printf "   - 최소(MIN): %d %%\n", cpu_min
+    printf "   - 최대(MAX): %d %%\n", disk_max  # 디스크는 보통 정수 포맷 매칭
+    printf "   - 최소(MIN): %d %%\n", disk_min
     print "============================================="
 }
 '
