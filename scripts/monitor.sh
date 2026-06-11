@@ -27,7 +27,7 @@ if [ -z "$UFW_STATUS" ]; then
 fi
 
 # 3. 자원 수집 (awk 연산 최적화)
-CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}' || echo "0.0")
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print 100.0 - $8}' || echo "0.0")
 MEM_USAGE=$(free | awk '/Mem/ {printf("%.1f", $3/$2 * 100.0)}' || echo "0.0")
 DISK_USED=$(df / | awk 'NR==2 {print $5}' | sed 's/%//' || echo "0")
 
