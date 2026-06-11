@@ -297,3 +297,24 @@ declare -x AGENT_LOG_DIR="/var/log/agent-app"
 declare -x AGENT_PORT="15034"
 declare -x AGENT_UPLOAD_DIR="/home/agent-admin/agent-app/upload_files"
 ```
+
+# 10. 실행 로그
+```bash
+root@f538ee2d99cf:~# su - agent-admin
+agent-admin@f538ee2d99cf:~$ cd
+agent-admin@f538ee2d99cf:~$ ./agent-app/agent-app
+>>> Starting Agent Boot Sequence...
+[1/5] Checking User Account               [OK]
+   ... Running as service user 'agent-admin' (uid=1002)
+[2/5] Verifying Environment Variables     [OK]
+   ... All required Envs correct
+[3/5] Checking Required Files             [OK]
+   ... Verified 'secret.key' with correct key string.
+[4/5] Checking Port Availability          [OK]
+   ... Port 15034 is available.
+[5/5] Verifying Log Permission            [OK]
+   ... Log directory is writable: /var/log/agent-app
+------------------------------------------------------------
+All Boot Checks Passed!
+Agent READY
+```
