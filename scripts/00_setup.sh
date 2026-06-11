@@ -18,11 +18,4 @@ apt-get install -y \
     acl \
     vim
 
-# 보너스 파일, 루트로 한번씩 실행할 예정
-AGENT_HOME="/home/agent-admin/agent-app"
-cp /root/scripts/monitor.sh "$AGENT_HOME/bin/report.sh"
-cp /root/scripts/log_manager.sh "$AGENT_HOME/bin/log_manager.sh"
-cp /root/scripts/test_log_manager.sh "$AGENT_HOME/bin/test_log_manager.sh"
-
-
 echo "[OK] All required packages installed."
