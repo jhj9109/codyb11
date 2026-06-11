@@ -1,0 +1,5 @@
+docker compose up --build -d
+
+docker compose logs -f
+
+docker compose exec ubuntu-agent /bin/bash

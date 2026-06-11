@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  ubuntu-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ubuntu-practice-server
+    # docker run의 --privileged 와 동일한 특권 권한 부여 (UFW 작동 완벽 해결)
+    privileged: true
+    # docker run의 -it (Interactive, TTY 사용) 환경 에뮬레이션
+    stdin_open: true
+    tty: true
+    # 포트 포워딩 설정 (호스트 : 컨테이너)
+    ports:
+      - "20022:20022"
+      - "15034:15034"
+    # 컨테이너가 비정상 종료되었을 때 자동 재시작 정책
+    restart: unless-stopped
